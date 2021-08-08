@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <project version="2">
 	<pipeline>
-		<pass name="Chapter-2-Output-To-Image" type="shader" active="true" patchverts="1">
+		<pass name="Chapter-2-Output-To-Image" type="shader" active="false" patchverts="1">
 			<shader type="vs" path="shaders/Chapter-2-Output-To-ImageVS.glsl" entry="main" />
 			<shader type="ps" path="shaders/Chapter-2-Output-To-ImagePS.glsl" entry="main" />
 			<inputlayout>
@@ -34,8 +34,8 @@
 			</inputlayout>
 			<rendertexture />
 			<items>
-				<item name="Quad2" type="geometry">
-					<type>ScreenQuad</type>
+				<item name="Chapter4Quad" type="geometry">
+					<type>ScreenQuadNDC</type>
 					<width>1</width>
 					<height>1</height>
 					<depth>1</depth>
@@ -45,7 +45,6 @@
 			<itemvalues />
 			<variables>
 				<variable type="float2" name="uResolution" system="ViewportSize" />
-				<variable type="float" name="uTime" system="Time" />
 			</variables>
 			<macros />
 		</pass>
@@ -53,7 +52,7 @@
 	<objects />
 	<cameras />
 	<settings>
-		<entry type="property" name="Chapter-2-Output-To-Image" item="pipe" />
+		<entry type="property" name="Chapter-4-Rays-Simple Camera-Background" item="pipe" />
 		<entry type="file" name="Chapter-4-Rays-Simple Camera-Background" shader="ps" />
 		<entry type="camera" fp="false">
 			<distance>4</distance>
