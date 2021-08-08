@@ -1,0 +1,3 @@
+[submodule "SHADERed"]
+	path = SHADERed
+	url = https://github.com/dfranx/SHADERed.git
