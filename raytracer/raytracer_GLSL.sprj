@@ -24,7 +24,7 @@
 			</variables>
 			<macros />
 		</pass>
-		<pass name="Chapter-4-Rays-Simple Camera-Background" type="shader" active="true" patchverts="1">
+		<pass name="Chapter-4-Rays-Simple Camera-Background" type="shader" active="false" patchverts="1">
 			<shader type="vs" path="shaders/Chapter-4-Rays-Simple Camera-BackgroundVS.glsl" entry="main" />
 			<shader type="ps" path="shaders/Chapter-4-Rays-Simple Camera-BackgroundPS.glsl" entry="main" />
 			<inputlayout>
@@ -48,12 +48,37 @@
 			</variables>
 			<macros />
 		</pass>
+		<pass name="Chapter-5-Adding-a-Sphere" type="shader" active="true" patchverts="1">
+			<shader type="vs" path="shaders/Chapter-5-Adding-a-SphereVS.glsl" entry="main" />
+			<shader type="ps" path="shaders/Chapter-5-Adding-a-SpherePS.glsl" entry="main" />
+			<inputlayout>
+				<item value="Position" semantic="POSITION" />
+				<item value="Normal" semantic="NORMAL" />
+				<item value="Texcoord" semantic="TEXCOORD0" />
+			</inputlayout>
+			<rendertexture />
+			<items>
+				<item name="Chapter5Quad" type="geometry">
+					<type>ScreenQuadNDC</type>
+					<width>1</width>
+					<height>1</height>
+					<depth>1</depth>
+					<topology>TriangleList</topology>
+				</item>
+			</items>
+			<itemvalues />
+			<variables>
+				<variable type="float2" name="uResolution" system="ViewportSize" />
+			</variables>
+			<macros />
+		</pass>
 	</pipeline>
 	<objects />
 	<cameras />
 	<settings>
-		<entry type="property" name="Chapter-4-Rays-Simple Camera-Background" item="pipe" />
-		<entry type="file" name="Chapter-4-Rays-Simple Camera-Background" shader="ps" />
+		<entry type="property" name="Chapter-5-Adding-a-Sphere" item="pipe" />
+		<entry type="file" name="Chapter-5-Adding-a-Sphere" shader="vs" />
+		<entry type="file" name="Chapter-5-Adding-a-Sphere" shader="ps" />
 		<entry type="camera" fp="false">
 			<distance>4</distance>
 			<pitch>25</pitch>
