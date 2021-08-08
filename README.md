@@ -9,9 +9,9 @@ The fragment shader goes through every pixel and renders the images. I have arra
 
 _At the core, the ray tracer sends rays through pixels and computes the color seen in the direction of those rays._ [Peter Shirley](https://raytracing.github.io/books/RayTracingInOneWeekend.html)
 
-### [Chapter 2 : Output an Image](https://github.com/Pikachuxxxx/Raytracing-in-a-Weekend-GLSL/blob/master/raytracer/shaders/Chapter-4-Rays-Simple Camera-BackgroundPS.glsl)
+### Chapter 2 : [Output an Image](https://github.com/Pikachuxxxx/Raytracing-in-a-Weekend-GLSL/blob/master/raytracer/shaders/Chapter-2-Output-To-ImagePS.glsl)
 ![](https://github.com/Pikachuxxxx/Raytracing-in-a-Weekend-GLSL/blob/master/raytracer/Chapter-2-Output%20an%20Image.png)
 
-### [Chapter 2 : Rays, Camera and Background](https://github.com/Pikachuxxxx/Raytracing-in-a-Weekend-GLSL/blob/master/raytracer/shaders/Chapter-2-Output-To-ImagePS.glsl)
+### Chapter 4 : [Rays, Camera and Background](https://github.com/Pikachuxxxx/Raytracing-in-a-Weekend-GLSL/blob/master/raytracer/shaders/Chapter-4-Rays-Simple%20Camera-BackgroundPS.glsl)
 
-![](https://github.com/Pikachuxxxx/Raytracing-in-a-Weekend-GLSL/blob/master/raytracer/Chapter-4-Rays-Simple Camera-Background.png)
+![](https://github.com/Pikachuxxxx/Raytracing-in-a-Weekend-GLSL/blob/master/raytracer/Chapter-4-Rays-Simple%20Camera-Background.png)
