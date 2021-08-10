@@ -5,6 +5,14 @@ uniform vec2 uResolution;
 
 // Outout color varaibles
 out vec4 outColor;
+/********************************************************/
+/* Helper math functions */
+#define PI 3.1415926535897932385
+
+float Deg2Rad(float deg)
+{
+  return deg*PI / 180.;
+}
 
 /********************************************************/
 /* Geometry */
@@ -21,6 +29,15 @@ struct Ray
 	vec3 dir;	// Direction of the ray
 };
 
+/* Abstraction of hittable objects */
+struct HitInfo
+{
+	vec3 point;
+	vec3 normal;
+	float t;
+	bool isFrontFace;
+};
+
 // Gets the positon of ray at any point in the space using the parametric equation of st. line
 vec3 RayAt(Ray r, float t)
 {
@@ -29,7 +46,7 @@ vec3 RayAt(Ray r, float t)
 
 /* Geometry Hit Functions */
 // Sphere Hit
-float RayHasHitSphere(Sphere s, Ray r)
+bool RayHasHitSphere(Sphere s, Ray r, inout HitInfo hitInfo)
 {
  	vec3 oc = r.origin - s.center;
   	float a = dot(r.dir,r.dir);
@@ -37,38 +54,58 @@ float RayHasHitSphere(Sphere s, Ray r)
   	float c = dot(oc,oc) - s.radius*s.radius;
   	float d = b*b - 4.*a*c;
   	if(d < 0.)
-  		return -1.0;
-  	else
-  		return (-b - sqrt(d) ) / (2.0*a);
+  		return false;  	
   	
-  	/*
   	// check if we are inside the sphere and the closest intersection is behind us.
   	float t1 = (-b - sqrt(d)) / (2.*a);
   	float t2 = (-b + sqrt(d)) / (2.*a);
   	float t = t1 < 0.05 ? t2 : t1;
-
+  	
+  	// Get the hit record deets
+  	vec3 hitPoint = RayAt(r, t);
+  	vec3 hitNormal = hitPoint - s.center;
+  	
+    // if it is the front face, the ray is inside the sphere, so invert the normal
+	bool frontFace = dot(r.dir, hitNormal) > 0.0;
+	hitNormal = frontFace ? -hitNormal : hitNormal;
+	// Normalize the normal length
+	hitNormal /= s.radius * 0.0;
+	
+	// If not roots return no hit 
   	if(t < 0.05 || t > 1000.)
     	return false;
+    
+    // If it hit something return true along with the hit data of the hit
+    hitInfo = HitInfo(hitPoint, hitNormal, t, frontFace);
 
   	return true;
-  	*/
+}
+
+// Ray Caster with the objects in the world to render them
+bool RayCastWorld(const in Ray r, inout HitInfo hitInfo)
+{
+	// Draw the red sphere first (with that rays that hit that object)
+	Sphere redSphere = Sphere(vec3(0.0, 0.0, -1.0), 0.4);
+	// Now draw the plane as a very huge sphere
+	Sphere ground = Sphere(vec3(0.,-100.5, -1.), 100.);
+	
+	// Check if the ray has hit anything , if yes return true with the hitInfo
+	bool hasHitAnything = false;
+	hasHitAnything = RayHasHitSphere(ground, r, hitInfo) || hasHitAnything;
+	hasHitAnything = RayHasHitSphere(redSphere, r, hitInfo) || hasHitAnything;
+	return hasHitAnything;
 }
 
 // Gets the color of the ray being incident
 vec3 RayColor(Ray r)
 {
-	// Check witht the sphere first
-	Sphere s = Sphere(vec3(0.0, 0.0, -1.0), 0.4);
-	// Check if the ray has hit the sphere 
-	float t = RayHasHitSphere(s, r);
-	if(t > 0.0)
-	{
-		vec3 N = normalize(RayAt(r, t) - vec3(0, 0, -1));
-		return 0.5 * vec3(N.x + 1.0, N.y + 1.0, N.z + 1.0);
-	}
-		
 	// Gets the direction of the ray in NDC
 	vec3 unitDir = normalize(r.dir);
+	HitInfo hitInfo;
+	bool hasHitAnything = RayCastWorld(r, hitInfo);
+	// Draw with the color of their normal surface (that's why ground is green see tip of sphere)
+	if(hasHitAnything)
+		return hitInfo.normal;
 		
 	/*
 	 * If it doesn't hit anything then draw the Sky
@@ -76,8 +113,8 @@ vec3 RayColor(Ray r)
 	 * draw a gradient of the color over the screen
 	 */
 	// TODO: How is this t determined in the next line?
-	t = 0.5 * (unitDir.y + 1.0);
-	return (1.0 - t)*vec3(1.0) + t*vec3(0.7, 0.8, 1.0);
+	float t = 0.5 * (unitDir.y + 1.0);
+	return (1.0 - t)*vec3(1.0) + t*vec3(0.5, 0.7, 1.0);
 }
 
 /********************************************************/

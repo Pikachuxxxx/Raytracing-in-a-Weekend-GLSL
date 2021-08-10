@@ -100,7 +100,7 @@
 	<objects />
 	<cameras />
 	<settings>
-		<entry type="property" name="Chapter-5-Adding-a-Sphere" item="pipe" />
+		<entry type="property" name="Chapter-6-Surface-Normals-and-Multiple-Objects" item="pipe" />
 		<entry type="file" name="Chapter-6-Surface-Normals-and-Multiple-Objects" shader="ps" />
 		<entry type="camera" fp="false">
 			<distance>4</distance>
