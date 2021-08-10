@@ -19,6 +19,6 @@ _At the core, the ray tracer sends rays through pixels and computes the color se
 ### Chapter 5 : [Adding a Sphere](https://github.com/Pikachuxxxx/Raytracing-in-a-Weekend-GLSL/blob/master/raytracer/shaders/Chapter-5-Adding-a-SpherePS.glsl)
 ![](https://github.com/Pikachuxxxx/Raytracing-in-a-Weekend-GLSL/blob/master/raytracer/Chapter-5-Simple-Red-Sphere.png)
 
-### Chapter 6 : [Surface Normals and Multiple Objects]()
-![]()
+### Chapter 6 : [Surface Normals and Multiple Objects](https://github.com/Pikachuxxxx/Raytracing-in-a-Weekend-GLSL/blob/master/raytracer/shaders/Chapter-6-Surface-Normals-and-Multiple-ObjectsPS.glsl)
+![](https://github.com/Pikachuxxxx/Raytracing-in-a-Weekend-GLSL/blob/master/raytracer/Chapter-6-Surface-Normals-and-Multiple-Objects.png)
 

@@ -48,18 +48,17 @@ vec3 RayAt(Ray r, float t)
 // Sphere Hit
 bool RayHasHitSphere(Sphere s, Ray r, inout HitInfo hitInfo)
 {
- 	vec3 oc = r.origin - s.center;
-  	float a = dot(r.dir,r.dir);
-  	float b = 2. * dot(oc, r.dir);
-  	float c = dot(oc,oc) - s.radius*s.radius;
-  	float d = b*b - 4.*a*c;
-  	if(d < 0.)
-  		return false;  	
+  vec3 oc = r.origin - s.center;
+  float a = dot(r.dir, r.dir);
+  float halfB = dot(oc,r.dir);
+  float c = dot(oc, oc) - s.radius * s.radius;
+  float d = halfB * halfB - a * c;
+  if(d < 0.){ return false; }	
   	
   	// check if we are inside the sphere and the closest intersection is behind us.
-  	float t1 = (-b - sqrt(d)) / (2.*a);
-  	float t2 = (-b + sqrt(d)) / (2.*a);
-  	float t = t1 < 0.05 ? t2 : t1;
+  float t1 = (-halfB - sqrt(d));
+  float t2 = (-halfB + sqrt(d));
+  float t = t1 < 0.05 ? t2 : t1;
   	
   	// Get the hit record deets
   	vec3 hitPoint = RayAt(r, t);
@@ -69,7 +68,7 @@ bool RayHasHitSphere(Sphere s, Ray r, inout HitInfo hitInfo)
 	bool frontFace = dot(r.dir, hitNormal) > 0.0;
 	hitNormal = frontFace ? -hitNormal : hitNormal;
 	// Normalize the normal length
-	hitNormal /= s.radius * 0.0;
+	hitNormal /= s.radius;
 	
 	// If not roots return no hit 
   	if(t < 0.05 || t > 1000.)
@@ -105,7 +104,7 @@ vec3 RayColor(Ray r)
 	bool hasHitAnything = RayCastWorld(r, hitInfo);
 	// Draw with the color of their normal surface (that's why ground is green see tip of sphere)
 	if(hasHitAnything)
-		return hitInfo.normal;
+		return 0.5 * (hitInfo.normal + vec3(1.0));
 		
 	/*
 	 * If it doesn't hit anything then draw the Sky
