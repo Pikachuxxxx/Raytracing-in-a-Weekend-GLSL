@@ -72,7 +72,7 @@
 			</variables>
 			<macros />
 		</pass>
-		<pass name="Chapter-6-Surface-Normals-and-Multiple-Objects" type="shader" active="true" patchverts="1">
+		<pass name="Chapter-6-Surface-Normals-and-Multiple-Objects" type="shader" active="false" patchverts="1">
 			<shader type="vs" path="shaders/Chapter-6-Surface-Normals-and-Multiple-ObjectsVS.glsl" entry="main" />
 			<shader type="ps" path="shaders/Chapter-6-Surface-Normals-and-Multiple-ObjectsPS.glsl" entry="main" />
 			<inputlayout>
@@ -96,14 +96,62 @@
 			</variables>
 			<macros />
 		</pass>
+		<pass name="Chapter-7-Antialiasing" type="shader" active="true" patchverts="1">
+			<shader type="vs" path="shaders/Chapter-7-AntialiasingVS.glsl" entry="main" />
+			<shader type="ps" path="shaders/Chapter-8-DiffuseMaterialsPS.glsl" entry="main" />
+			<inputlayout>
+				<item value="Position" semantic="POSITION" />
+				<item value="Normal" semantic="NORMAL" />
+				<item value="Texcoord" semantic="TEXCOORD0" />
+			</inputlayout>
+			<rendertexture />
+			<items>
+				<item name="Chapter7Quad" type="geometry">
+					<type>ScreenQuadNDC</type>
+					<width>1</width>
+					<height>1</height>
+					<depth>1</depth>
+					<topology>TriangleList</topology>
+				</item>
+			</items>
+			<itemvalues />
+			<variables>
+				<variable type="float2" name="uResolution" system="ViewportSize" />
+			</variables>
+			<macros />
+		</pass>
+		<pass name="Chapter-8-Diffuse-Materials" type="shader" active="false" patchverts="1">
+			<shader type="vs" path="shaders/Chapter-8-DiffuseMaterialsVS.glsl" entry="main" />
+			<shader type="ps" path="shaders/Chapter-8-DiffuseMaterialsPS.glsl" entry="main" />
+			<inputlayout>
+				<item value="Position" semantic="POSITION" />
+				<item value="Normal" semantic="NORMAL" />
+				<item value="Texcoord" semantic="TEXCOORD0" />
+			</inputlayout>
+			<rendertexture />
+			<items>
+				<item name="Chapter8Quad" type="geometry">
+					<type>ScreenQuadNDC</type>
+					<width>1</width>
+					<height>1</height>
+					<depth>1</depth>
+					<topology>TriangleList</topology>
+				</item>
+			</items>
+			<itemvalues />
+			<variables>
+				<variable type="float2" name="uResolution" system="ViewportSize" />
+			</variables>
+			<macros />
+		</pass>
 	</pipeline>
 	<objects />
 	<cameras />
 	<settings>
-		<entry type="property" name="Chapter-6-Surface-Normals-and-Multiple-Objects" item="pipe" />
-		<entry type="file" name="Chapter-6-Surface-Normals-and-Multiple-Objects" shader="ps" />
+		<entry type="property" name="Chapter-7-Antialiasing" item="pipe" />
+		<entry type="file" name="Chapter-7-Antialiasing" shader="ps" />
 		<entry type="camera" fp="false">
-			<distance>4</distance>
+			<distance>9</distance>
 			<pitch>25</pitch>
 			<yaw>319</yaw>
 			<roll>360</roll>

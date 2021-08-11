@@ -22,3 +22,5 @@ _At the core, the ray tracer sends rays through pixels and computes the color se
 ### Chapter 6 : [Surface Normals and Multiple Objects](https://github.com/Pikachuxxxx/Raytracing-in-a-Weekend-GLSL/blob/master/raytracer/shaders/Chapter-6-Surface-Normals-and-Multiple-ObjectsPS.glsl)
 ![](https://github.com/Pikachuxxxx/Raytracing-in-a-Weekend-GLSL/blob/master/raytracer/Chapter-6-Surface-Normals-and-Multiple-Objects.png)
 
+### Chapter 7 : [Antialiasing](https://github.com/Pikachuxxxx/Raytracing-in-a-Weekend-GLSL/blob/master/raytracer/shaders/Chapter-7-AntialiasingPS.glsl)
+![](https://github.com/Pikachuxxxx/Raytracing-in-a-Weekend-GLSL/blob/master/raytracer/Chapter-7-Antialiasing.png)
