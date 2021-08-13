@@ -2,6 +2,7 @@
 
 // Input uniform variables
 uniform vec2 uResolution;
+uniform sampler2D uTex;
 
 // Outout color varaibles
 out vec4 outColor;
@@ -187,4 +188,6 @@ void main()
 
     // Final fragment color
     outColor = vec4(col, 1.0);
+    // Testing render texture
+    outColor = texture(uTex, uv / 1.5);
 }

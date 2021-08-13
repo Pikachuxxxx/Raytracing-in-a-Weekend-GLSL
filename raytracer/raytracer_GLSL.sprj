@@ -7,7 +7,7 @@
 			<inputlayout>
 				<item value="Position" semantic="POSITION" />
 			</inputlayout>
-			<rendertexture />
+			<rendertexture name="AntialiasingOPRT" />
 			<items>
 				<item name="Quad" type="geometry">
 					<type>ScreenQuadNDC</type>
@@ -35,6 +35,54 @@
 			<rendertexture />
 			<items>
 				<item name="Chapter4Quad" type="geometry">
+					<type>ScreenQuadNDC</type>
+					<width>1</width>
+					<height>1</height>
+					<depth>1</depth>
+					<topology>TriangleList</topology>
+				</item>
+			</items>
+			<itemvalues />
+			<variables>
+				<variable type="float2" name="uResolution" system="ViewportSize" />
+			</variables>
+			<macros />
+		</pass>
+		<pass name="Chapter-8-Diffuse-Materials" type="shader" active="true" patchverts="1">
+			<shader type="vs" path="shaders/Chapter-8-DiffuseMaterialsVS.glsl" entry="main" />
+			<shader type="ps" path="shaders/Chapter-8-DiffuseMaterialsPS.glsl" entry="main" />
+			<inputlayout>
+				<item value="Position" semantic="POSITION" />
+				<item value="Normal" semantic="NORMAL" />
+				<item value="Texcoord" semantic="TEXCOORD0" />
+			</inputlayout>
+			<rendertexture />
+			<items>
+				<item name="Chapter8Quad" type="geometry">
+					<type>ScreenQuadNDC</type>
+					<width>1</width>
+					<height>1</height>
+					<depth>1</depth>
+					<topology>TriangleList</topology>
+				</item>
+			</items>
+			<itemvalues />
+			<variables>
+				<variable type="float2" name="uResolution" system="ViewportSize" />
+			</variables>
+			<macros />
+		</pass>
+		<pass name="Chapter-7-Antialiasing" type="shader" active="true" patchverts="1">
+			<shader type="vs" path="shaders/Chapter-7-AntialiasingVS.glsl" entry="main" />
+			<shader type="ps" path="shaders/Chapter-7-AntialiasingPS.glsl" entry="main" />
+			<inputlayout>
+				<item value="Position" semantic="POSITION" />
+				<item value="Normal" semantic="NORMAL" />
+				<item value="Texcoord" semantic="TEXCOORD0" />
+			</inputlayout>
+			<rendertexture name="AntialiasingOPRT" />
+			<items>
+				<item name="Chapter7Quad" type="geometry">
 					<type>ScreenQuadNDC</type>
 					<width>1</width>
 					<height>1</height>
@@ -80,7 +128,7 @@
 				<item value="Normal" semantic="NORMAL" />
 				<item value="Texcoord" semantic="TEXCOORD0" />
 			</inputlayout>
-			<rendertexture />
+			<rendertexture name="AntialiasingOPRT" />
 			<items>
 				<item name="Chapter6Quad" type="geometry">
 					<type>ScreenQuadNDC</type>
@@ -96,62 +144,19 @@
 			</variables>
 			<macros />
 		</pass>
-		<pass name="Chapter-7-Antialiasing" type="shader" active="true" patchverts="1">
-			<shader type="vs" path="shaders/Chapter-7-AntialiasingVS.glsl" entry="main" />
-			<shader type="ps" path="shaders/Chapter-8-DiffuseMaterialsPS.glsl" entry="main" />
-			<inputlayout>
-				<item value="Position" semantic="POSITION" />
-				<item value="Normal" semantic="NORMAL" />
-				<item value="Texcoord" semantic="TEXCOORD0" />
-			</inputlayout>
-			<rendertexture />
-			<items>
-				<item name="Chapter7Quad" type="geometry">
-					<type>ScreenQuadNDC</type>
-					<width>1</width>
-					<height>1</height>
-					<depth>1</depth>
-					<topology>TriangleList</topology>
-				</item>
-			</items>
-			<itemvalues />
-			<variables>
-				<variable type="float2" name="uResolution" system="ViewportSize" />
-			</variables>
-			<macros />
-		</pass>
-		<pass name="Chapter-8-Diffuse-Materials" type="shader" active="false" patchverts="1">
-			<shader type="vs" path="shaders/Chapter-8-DiffuseMaterialsVS.glsl" entry="main" />
-			<shader type="ps" path="shaders/Chapter-8-DiffuseMaterialsPS.glsl" entry="main" />
-			<inputlayout>
-				<item value="Position" semantic="POSITION" />
-				<item value="Normal" semantic="NORMAL" />
-				<item value="Texcoord" semantic="TEXCOORD0" />
-			</inputlayout>
-			<rendertexture />
-			<items>
-				<item name="Chapter8Quad" type="geometry">
-					<type>ScreenQuadNDC</type>
-					<width>1</width>
-					<height>1</height>
-					<depth>1</depth>
-					<topology>TriangleList</topology>
-				</item>
-			</items>
-			<itemvalues />
-			<variables>
-				<variable type="float2" name="uResolution" system="ViewportSize" />
-			</variables>
-			<macros />
-		</pass>
 	</pipeline>
-	<objects />
+	<objects>
+		<object type="rendertexture" name="AntialiasingOPRT" rsize="1.000000,1.000000" clear="false" r="0.156923056" g="0.156921491" b="0.156921491">
+			<bind slot="0" name="Chapter-8-Diffuse-Materials" />
+		</object>
+	</objects>
 	<cameras />
 	<settings>
 		<entry type="property" name="Chapter-7-Antialiasing" item="pipe" />
-		<entry type="file" name="Chapter-7-Antialiasing" shader="ps" />
+		<entry type="file" name="Chapter-8-Diffuse-Materials" shader="ps" />
+		<entry type="file" name="Chapter-7-Antialiasing" shader="vs" />
 		<entry type="camera" fp="false">
-			<distance>9</distance>
+			<distance>19</distance>
 			<pitch>25</pitch>
 			<yaw>319</yaw>
 			<roll>360</roll>
