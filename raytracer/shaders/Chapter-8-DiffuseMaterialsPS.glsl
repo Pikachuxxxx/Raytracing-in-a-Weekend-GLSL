@@ -184,10 +184,14 @@ void main()
     	}
 	}
 	col /= float(numSamples * numSamples);
+	
+	// Accumulate the output to a buffer
+	if(PASS_INDEX == 0)
+	{
+	}
 
 
     // Final fragment color
-    outColor = vec4(col, 1.0);
-    // Testing render texture
-    outColor = texture(uTex, uv / 1.5);
+	outColor = vec4(col, 1.0);
+    
 }

@@ -166,6 +166,28 @@ void main()
     // Get the pixel color after the ray has intersected with the pixel
     vec3 rayColor = RayColor(r);
     
+    // Anti-aliasing
+    vec2 rcpRes = vec2(1.0) / uResolution.xy;
+	vec3 col = vec3(0.0);
+	int numSamples = 4;
+	float rcpNumSamples = 1.0 / float(numSamples);
+	
+	// Simple box filtering
+	for(int x = 0; x < numSamples; ++x)
+	{
+    	for(int y = 0; y < numSamples; ++y)
+    	{
+        	vec2 adj = vec2(float(x), float(y));
+        	vec2 uv = (gl_FragCoord.xy + adj * rcpNumSamples) * rcpRes;
+        	// Get the ray from cam to uv pixel
+    		Ray r = GetRayFromCamera(cam, uv);
+    		// Get the pixel color after the ray has intersected with the pixel
+        	col += RayColor(r);
+    	}
+	}
+	col /= float(numSamples * numSamples);
+
+
     // Final fragment color
-    outColor = vec4(rayColor, 1.0);
+    outColor = vec4(col, 1.0);
 }
